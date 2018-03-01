@@ -1,0 +1,55 @@
+package joksuTraineri;
+
+/**
+ * Tämä on sovelluksen Controller (C). Tämä luokka sisältää nyt myös sovelluksen
+ * käynnistyksen (main).
+ *
+ * @author vadimzu
+ */
+public class Kontrolleri {
+
+    // kapseloidut ominaisuudet (V, M)
+    private Naytto naytto;
+    private SykeMittari mittari;
+
+    
+
+    public Kontrolleri() {
+        // Nyt kontrollerin (C) konstruktori (eli tämä metodi) 
+        // luo muut tarvittavat komponentit ja pyytää sitten 
+        // näyttöä esittämään aloitusnäytön.
+
+        // luodaan sovelluksen tarvitsemat muut komponentit: M, V.
+        mittari = new SykeMittari(); // model Sykemittari
+        naytto = new Naytto();       // View
+
+        // välitetään näytölle tieto sovelluksen kontrollerista eli
+        // tämä komponentti itse (this).
+        naytto.rekisteroiOhjain(this);
+
+        // pyydetään näyttöä esittämään aloitusnäyttö
+        naytto.aloitusNaytto();
+
+    }
+        // näytöltä tulevia pyyntöjä
+        public int syke() {
+            int runSyke = mittari.getSyke();
+            return runSyke;
+        }
+        public int syke1() {
+            int runSyke = mittari.getSyke1();
+            return runSyke;
+        }
+        public int syke2() {
+            int runSyke = mittari.getSyke2();
+            return runSyke;
+        }
+
+        // Koko sovelluksen käynnistäminen
+        public static void main(String[] args) {
+        // luodaan uusi kontrolleri-olio, joka valmistelee nyt sovelluksen
+        new Kontrolleri();
+
+    }
+
+}
