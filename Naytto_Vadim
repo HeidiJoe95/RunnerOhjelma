@@ -1,0 +1,159 @@
+package joksuTraineri;
+
+import javax.swing.JOptionPane;
+
+/**
+ *
+ * @author vadimzu
+ */
+public class Naytto {
+
+    // tieto kontrollerista, jolle näyttö lähettää pyynnöt
+    private Kontrolleri kontrolleri;
+
+    // metodi luo näytön, joka näytetään aluksi käyttäjälle
+    public void aloitusNaytto() {
+        String valintaStr;      // käyttäjän valinta merkkijonona
+        int valinta;            // valinta numerona
+
+        // näytetään käyttäjälle päävalikko
+        valintaStr = JOptionPane.showInputDialog(null,
+                "Valitse toiminto (1-4) seuraavista: \n"
+                + "1: Kevyt juoksu. \n"
+                + "2: Kohtalainen jouksu \n"
+                + "3: Nopea jouksu \n"
+                + "4: lopetus \n"
+                + "Mitä haluat tehdä?");
+
+        // muutetaan käyttäjän vastaus numeroksi
+        valinta = Integer.parseInt(valintaStr);
+
+        // siirrytään käyttäjän haluamaan toimintoon
+        switch (valinta) {
+            case 1:
+                kevyt();
+                break;
+            case 2:
+                middle();
+                break;
+            case 3:
+                hard();
+                break;
+            case 4:
+                lopetus();
+                break;
+            default:
+                // näytetään valikko uudestaan, jos ei kunnollinen valinta
+                aloitusNaytto();
+        }
+    }
+
+    public void kevyt() {
+        String aikaStr;
+        double aika;
+        int vaihe = 0;
+        //kysellään käyttäjältä haluttu jouksuaika
+        aikaStr
+                = JOptionPane.showInputDialog("Kuinka kauan juostaan?");
+        aika = Double.parseDouble(aikaStr);
+
+        while (aika > 0) {
+
+            vaihe++;
+            aika = aika - 1;
+            // pyydetään kontrolleria hoitamaan toiminto, 
+            // saadaan takaisin haluttu vastaus
+
+            // tulostetaan 
+            JOptionPane.showMessageDialog(null, " Olet juossut " + vaihe
+                    + " minuttia\n" + " Aika on jäljellä: " + aika
+                    + " minuttia\n");
+               int syke1 = kontrolleri.syke1();
+            JOptionPane.showMessageDialog(null, " Syke on: " + syke1);
+        }
+        
+        if (aika == 0) {
+            JOptionPane.showMessageDialog(null, "Onneksi olkoon! Olet suorittanut joksuohjelman!");
+        }
+        // siirrytään takaisin aloitusnäyttöön
+        aloitusNaytto();
+
+    }
+
+    public void middle() {
+        String aikaStr;
+        double aika;
+        int vaihe = 0;
+        //kysellään käyttäjältä haluttu jouksuaika
+        aikaStr
+                = JOptionPane.showInputDialog("Kuinka kauan juostaan?");
+        aika = Double.parseDouble(aikaStr);
+
+        while (aika > 0) {
+
+            vaihe++;
+            aika = aika - 1;
+            // pyydetään kontrolleria hoitamaan toiminto, 
+            // saadaan takaisin haluttu vastaus
+
+            // tulostetaan 
+            JOptionPane.showMessageDialog(null, " Olet juossut " + vaihe
+                    + " minuttia\n" + " Aika on jäljellä: " + aika
+                    + " minuttia\n");
+            int syke1 = kontrolleri.syke1();
+            JOptionPane.showMessageDialog(null, " Syke on: " + syke1);
+        }
+        if (aika == 0) {
+            JOptionPane.showMessageDialog(null, "Onneksi olkoon! Olet suorittanut joksuohjelman!");
+        }
+        // siirrytään takaisin aloitusnäyttöön
+        aloitusNaytto();
+
+    }
+
+    public void hard() {
+        String aikaStr;
+        double aika;
+        int vaihe = 0;
+        //kysellään käyttäjältä haluttu jouksuaika
+        aikaStr
+                = JOptionPane.showInputDialog("Kuinka kauan juostaan?");
+        aika = Double.parseDouble(aikaStr);
+
+        while (aika > 0) {
+
+            vaihe++;
+            aika = aika - 1;
+            // pyydetään kontrolleria hoitamaan toiminto, 
+            // saadaan takaisin haluttu vastaus
+
+            // tulostetaan 
+            JOptionPane.showMessageDialog(null, " Olet juossut " + vaihe
+                    + " minuttia\n" + " Aika on jäljellä: " + aika
+                    + " minuttia\n");
+            int syke2 = kontrolleri.syke2();
+            JOptionPane.showMessageDialog(null, " Syke on: " + syke2);
+        }
+        if (aika == 0) {
+            JOptionPane.showMessageDialog(null, "Onneksi olkoon! Olet suorittanut joksuohjelman!");
+        }
+        // siirrytään takaisin aloitusnäyttöön
+        aloitusNaytto();
+
+    }
+  
+    public void lopetus() {
+        System.exit(0);
+    }
+
+    public void rekisteroiOhjain(Kontrolleri ohjain) {
+        // näyttö saa tiedon kontrollerista, jolle se välittää pyyntöjä
+        this.kontrolleri = ohjain;
+    }
+      public void Syke() {
+       int syke = kontrolleri.syke();
+            
+            JOptionPane.showMessageDialog(null, " Syke on: " + syke); 
+    }
+
+}
